@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+// writing files
 const writeFile = fileContent => {
     return new Promise((resolve, reject) => {
         fs.writeFile('./dist/index.html', fileContent, err => {
@@ -19,39 +20,41 @@ const writeFile = fileContent => {
     });
 };
 
-const copyFile = fileContent => {
+// copying file
+const copyFile = () => {
     return new Promise((resolve, reject) => {
-        fs.copyFile('./app.js', fileContent, err => {
+        fs.copyFile('./src/style.css', './dist/style.css', err => {
             if (err) {
                 reject(err);
                 return;
             }
             resolve({
                 ok: true,
-                message: 'File copied!'
+                message: 'Stylesheet created'
             });
         });
     });
 };
 
-writeFile()
-    .then(successfulResponse => {
-        // this will run when we use `resolve()`
-        console.log(successfulResponse);
-    })
-    .catch(errorResponse => {
-        // this will run when we use `reject()`
-        console.log(errorResponse);
-    });
-
-copyFile()
-    .then(successfulResponse => {
-        // this will run when we use `resolve()`
-        console.log(successfulResponse);
-    })
-    .catch(errorResponse => {
-        // this will run when we use `reject()`
-        console.log(errorResponse);
-    });
-
 module.exports = { writeFile, copyFile };
+
+// // testing samples
+// writeFile()
+//     .then(successfulResponse => {
+//         // this will run when we use `resolve()`
+//         console.log(successfulResponse);
+//     })
+//     .catch(errorResponse => {
+//         // this will run when we use `reject()`
+//         console.log(errorResponse);
+//     });
+
+// copyFile()
+//     .then(successfulResponse => {
+//         // this will run when we use `resolve()`
+//         console.log(successfulResponse);
+//     })
+//     .catch(errorResponse => {
+//         // this will run when we use `reject()`
+//         console.log(errorResponse);
+//     });
